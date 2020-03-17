@@ -1,2 +1,10 @@
-%h1 Directors#show
-%p Find me in app/views/directors/show.html.haml
+= @director.name
+%br
+= @director.from
+%br
+
+%br
+%hr
+=link_to "Edit", edit_director_path(@director)
+%br
+=link_to "Back to the list", directors_path

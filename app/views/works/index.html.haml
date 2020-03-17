@@ -1,7 +1,7 @@
 -@works.each do |work|
   %hr
   = " title :"
-  = link_to "title", work_path(work)
+  = link_to "#{work.title}", work_path(work)
   %br
   = " release :"
   = work.release
