@@ -1,0 +1,20 @@
+-@works.each do |work|
+  %hr
+  = " title :"
+  = link_to "title", work_path(work)
+  %br
+  = " release :"
+  = work.release
+  %br
+  = " starring :"
+  = work.starring
+  %br
+  = " description :"
+  = work.description
+
+
+  %hr
+  =link_to "Edit", edit_work_path(work)
+  =link_to "Delete", work_path(work), method: :delete, data: {confirm: "Are you sure?"}
+
+=link_to "Registrarion", new_work_path

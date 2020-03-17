@@ -1,0 +1,9 @@
+=bootstrap_form_with model: @work, local: true do |f|
+  =f.text_field :title
+  =f.text_field :release
+  =f.text_field :starring
+  =f.text_field :description
+  =f.submit class: "btn btn-info"
+
+%br
+=link_to "Back to the list", works_path
