@@ -5,6 +5,16 @@
 
 %br
 %hr
+
+-@director.works.each do |work|
+  = link_to "#{work.title}(#{work.release.year})", work_path(work)
+
+
+
+
+%hr
+=link_to "Add new movie", new_work_path(director_id: @director.id)
+%br
 =link_to "Edit", edit_director_path(@director)
 %br
 =link_to "Back to the list", directors_path

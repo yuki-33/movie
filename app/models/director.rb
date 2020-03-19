@@ -1,4 +1,5 @@
 class Director < ApplicationRecord
+  has_many :works
   validates :name, presence: true
   scope :by_id, ->{ order(id: :asc) }
 
@@ -6,5 +7,5 @@ class Director < ApplicationRecord
   def capitalize_name
     self.name = self.name.split.map(&:capitalize).join(' ')
   end
-  
+
 end

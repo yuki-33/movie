@@ -1,10 +1,21 @@
 = @work.title
 %br
+= link_to "#{@work.director.name}", director_path(@work.director)
+%br
 = @work.release
 %br
 = @work.starring
 %br
 = @work.description
+
+%hr
+= "#{@work.director.name} works"
+%br
+= "Also recommended..."
+%br
+-@work.related_works.each do |work|
+  = link_to "#{work.title}(#{work.release.year})", work_path(work)
+
 
 %br
 %hr

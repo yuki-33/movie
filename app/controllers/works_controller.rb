@@ -2,7 +2,7 @@ class WorksController < ApplicationController
   before_action :set_work, only: [:edit, :show, :update, :destroy]
 
   def index
-    @works = Work.all.by_id
+    @works = Work.all.by_position
   end
 
   def create
@@ -16,6 +16,7 @@ class WorksController < ApplicationController
 
   def new
     @work = Work.new
+    @work.director_id = params[:director_id] if params[:director_id].present?
   end
 
   def edit
@@ -37,6 +38,11 @@ class WorksController < ApplicationController
     redirect_to works_path
   end
 
+  def move_higher
+    Work.find(params[:id]).move_higher
+    redirect_to works_path
+  end
+
 
   private
   def set_work
@@ -44,7 +50,7 @@ class WorksController < ApplicationController
   end
 
   def works_params
-    params[:work].permit(:title, :relsase, :starring, :description)
+    params[:work].permit(:title, :director_id, :release, :starring, :description)
   end
 
 end
