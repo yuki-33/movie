@@ -1,0 +1,35 @@
+#main-navbar.collapse.navbar-collapse.custom-navmenu
+  .container.py-2.py-md-5
+    .row.align-items-start
+      .col-md-2
+        %ul.custom-menu
+          %li.active
+            %a{:href => "index.html"} Home
+          %li
+            %a{:href => "about.html"} About Me
+          %li
+            %a{:href => "services.html"} Services
+          %li
+            %a{:href => "works.html"} Works
+          %li
+            %a{:href => "contact.html"} Contact
+      .col-md-6.d-none.d-md-block.mr-auto
+        .tweet.d-flex
+          %span.icofont-twitter.text-white.mt-2.mr-3
+          %div
+            %p
+              %em
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam necessitatibus incidunt ut officiis explicabo inventore.
+                %br/
+                %a{:href => "#"} t.co/v82jsk
+      .col-md-4.d-none.d-md-block
+        %h3 Hire Me
+        %p
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam necessitatibus incidunt ut officiisexplicabo inventore.
+          %br/
+          %a{:href => "#"} myemail@gmail.com
+%nav.navbar.navbar-light.custom-navbar
+  .container
+    %a.navbar-brand{:href => "index.html"} MyPortfolio.
+    %a.burger{"data-target" => "#main-navbar", "data-toggle" => "collapse", :href => "#"}
+      %span
