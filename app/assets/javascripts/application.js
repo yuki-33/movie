@@ -1,3 +1,9 @@
 //= require jquery3
 //= require popper
 //= require bootstrap-sprockets
+//= require jquery.easing/jquery.easing.min
+//= require php-email-form/validate
+//= require isotope-layout/isotope.pkgd.min
+//= require aos/aos
+//= require owl.carousel/owl.carousel.min
+//= require main
