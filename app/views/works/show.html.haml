@@ -22,7 +22,7 @@
 -# =link_to "Edit", edit_work_path(@work)
 -# %br
 -# =link_to "Back to the list", works_path
-
+-#
 
 %main#main
   %section.section
@@ -31,11 +31,13 @@
         .col-md-6{"data-aos" => "fade-up"}
           %h2=@work.title
           %p
-            release: #{@work.release.year}
+            release: #{@work.release.try(:year)}
             %br
             director:
             =link_to "#{@work.director.name}", director_path(@work.director)
-
+            %br
+            =link_to "Edit", edit_work_path(@work), class: "btn btn-outline-info"
+            =link_to "Delete", work_path(@work), method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-outline-secondary"
     .site-section.pb-0
       .container
         .row.align-items-stretch
@@ -48,53 +50,58 @@
                 %span.text-muted=@work.release.year
               .mb-5
                 %p
-                  One of the Japanese famous animation movies.
+                  =@work.description
               %h4.h4.mb-3 Director
               %ul.list-unstyled.list-line.mb-5
                 =link_to "#{@work.director.name}", director_path(@work.director)
+
+
     .site-section.pb-0
       .container
         .row.justify-content-center.text-center.mb-4
           .col-5
-            %h3.h3.heading More Works
-            %p Lorem ipsum dolor sit amet consectetur adipisicing elit explicabo inventore.
+            %h3.h3.heading #{@work.director.name} Works
+            %p There are also recommended...
         .row{"data-aos" => "fade-up", "data-aos-delay" => "200"}
-          .item.web.col-sm-6.col-md-4.col-lg-4.mb-4
-            %a.item-wrap.fancybox{:href => "work-single.html"}
-              .work-info
-                %h3 Boxed Water
-                %span Web
-              %img.img-fluid{:src => "img/img_1.jpg"}/
-          .item.photography.col-sm-6.col-md-4.col-lg-4.mb-4
-            %a.item-wrap.fancybox{:href => "work-single.html"}
-              .work-info
-                %h3 Build Indoo
-                %span Photography
-              %img.img-fluid{:src => "img/img_2.jpg"}/
-          .item.branding.col-sm-6.col-md-4.col-lg-4.mb-4
-            %a.item-wrap.fancybox{:href => "work-single.html"}
-              .work-info
-                %h3 Cocooil
-                %span Branding
-              %img.img-fluid{:src => "img/img_3.jpg"}/
-          .item.design.col-sm-6.col-md-4.col-lg-4.mb-4
-            %a.item-wrap.fancybox{:href => "work-single.html"}
-              .work-info
-                %h3 Nike Shoe
-                %span Design
-              %img.img-fluid{:src => "img/img_4.jpg"}/
-          .item.photography.col-sm-6.col-md-4.col-lg-4.mb-4
-            %a.item-wrap.fancybox{:href => "work-single.html"}
-              .work-info
-                %h3 Kitchen Sink
-                %span Photography
-              %img.img-fluid{:src => "img/img_5.jpg"}/
-          .item.branding.col-sm-6.col-md-4.col-lg-4.mb-4
-            %a.item-wrap.fancybox{:href => "work-single.html"}
-              .work-info
-                %h3 Amazon
-                %span brandingn
-              %img.img-fluid{:src => "img/img_6.jpg"}/
+
+          -@work.related_works.each do |work|
+            .item.web.col-sm-6.col-md-4.col-lg-4.mb-4
+              -# %a.item-wrap.fancybox{:href => "work-single.html"}
+              =link_to work_path(work), class: 'item-wrap fancybox' do
+                .work-info
+                  %h3=work.title
+                  %span=work.release.year
+                %img.img-fluid{:src => "/img/img_1.jpg"}/
+          -# .item.photography.col-sm-6.col-md-4.col-lg-4.mb-4
+          -#   %a.item-wrap.fancybox{:href => "work-single.html"}
+          -#     .work-info
+          -#       %h3 Build Indoo
+          -#       %span Photography
+          -#     %img.img-fluid{:src => "img/img_2.jpg"}/
+          -# .item.branding.col-sm-6.col-md-4.col-lg-4.mb-4
+          -#   %a.item-wrap.fancybox{:href => "work-single.html"}
+          -#     .work-info
+          -#       %h3 Cocooil
+          -#       %span Branding
+          -#     %img.img-fluid{:src => "img/img_3.jpg"}/
+          -# .item.design.col-sm-6.col-md-4.col-lg-4.mb-4
+          -#   %a.item-wrap.fancybox{:href => "work-single.html"}
+          -#     .work-info
+          -#       %h3 Nike Shoe
+          -#       %span Design
+          -#     %img.img-fluid{:src => "img/img_4.jpg"}/
+          -# .item.photography.col-sm-6.col-md-4.col-lg-4.mb-4
+          -#   %a.item-wrap.fancybox{:href => "work-single.html"}
+          -#     .work-info
+          -#       %h3 Kitchen Sink
+          -#       %span Photography
+          -#     %img.img-fluid{:src => "img/img_5.jpg"}/
+          -# .item.branding.col-sm-6.col-md-4.col-lg-4.mb-4
+          -#   %a.item-wrap.fancybox{:href => "work-single.html"}
+          -#     .work-info
+          -#       %h3 Amazon
+          -#       %span brandingn
+          -#     %img.img-fluid{:src => "img/img_6.jpg"}/
 
 
       -#           -# %li Logo
