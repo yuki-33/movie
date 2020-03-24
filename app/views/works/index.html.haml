@@ -45,9 +45,9 @@
             =link_to work_path(work), class: 'item-wrap fancybox' do
               .work-info
                 %h3=work.title
-                -# =link_to "Delete", work_path(work), method: :delete, data: {confirm: "Are you sure?"}
                 %span=work.release.try(:year)
-              %img.img-fluid{:src => "img/img_1.jpg"}/
+              -# %img.img-fluid{:src => "img/img_1.jpg"}/
+              =image_tag work.image.to_s, class: 'img-fluid'
 
   / End  Works Section
   / ======= Clients Section =======

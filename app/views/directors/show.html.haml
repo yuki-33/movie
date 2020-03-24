@@ -1,20 +1,55 @@
-= @director.name
-%br
-= @director.from
-%br
+-# = @director.name
+-# %br
+-# = @director.from
+-# %br
+-#
+-# %br
+-# %hr
+-#
+-# -@director.works.each do |work|
+-#   = link_to "#{work.title}(#{work.release.year})", work_path(work)
+-#
+-#
+-#
+-#
+-# %hr
+-# =link_to "Add new movie", new_work_path(director_id: @director.id)
+-# %br
+-# =link_to "Edit", edit_director_path(@director)
+-# %br
+-# =link_to "Back to the list", directors_path
+-#
 
-%br
-%hr
-
--@director.works.each do |work|
-  = link_to "#{work.title}(#{work.release.year})", work_path(work)
 
 
-
-
-%hr
-=link_to "Add new movie", new_work_path(director_id: @director.id)
-%br
-=link_to "Edit", edit_director_path(@director)
-%br
-=link_to "Back to the list", directors_path
+%main#main
+  %section.section
+    .container
+      .row.mb-4.align-items-center
+        .col-md-6{"data-aos" => "fade-up"}
+          %h2=@director.name
+          %p
+            =@director.from
+            %br
+            =link_to "Add new movie", new_work_path(director_id: @director.id), class: "btn btn-outline-danger"
+            =link_to "Edit", edit_director_path(@director), class: "btn btn-outline-info"
+            =link_to "Delete", director_path(@director), method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-outline-secondary"
+    .site-section.pb-0
+      .container
+        .row.align-items-stretch
+          .col-md-8{"data-aos" => "fade-up"}
+            %img.img-fluid{:alt => "Image", :src => "/img/img_1_big.jpg"}/
+            -# =image_tag @work.image.to_s, class: 'img-fluid'
+          .col-md-3.ml-auto{"data-aos" => "fade-up", "data-aos-delay" => "100"}
+            .sticky-content
+              %h3.h3 Works
+              -# %p.mb-4
+              -#   %span.text-muted=@work.release.year
+              -# .mb-5
+              -#   %p
+              -#     =@work.description
+              -# %h4.h4.mb-3 Director
+              %ul.list-unstyled.list-line.mb-5
+                -@director.works.by_release.each do |work|
+                  =link_to "#{work.title}(#{work.release.year})", work_path(work)
+                  %br

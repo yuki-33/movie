@@ -1,18 +1,20 @@
--@directors.each do |director|
-  %hr
-  = " name :"
-  = link_to "#{director.name}", director_path(director)
-  %br
-  = " from :"
-  = director.from
-  %br
+-# -@directors.each do |director|
+-#   %hr
+-#   =" name :"
+-#   =link_to "#{director.name}", director_path(director)
+-#   %br
+-#   =" from :"
+-#   =director.from
+-#   %br
+-#
+-#
+-#
+-#   =link_to "Edit", edit_director_path(director)
+-#   =link_to "Delete", director_path(director), method: :delete, data: {confirm: "Are you sure?"}
+-# %hr
+-# =link_to "Registrarion", new_director_path
+-#
 
-
-
-  =link_to "Edit", edit_director_path(director)
-  =link_to "Delete", director_path(director), method: :delete, data: {confirm: "Are you sure?"}
-%hr
-=link_to "Registrarion", new_director_path
 
 
 
@@ -23,49 +25,23 @@
     .container
       .row.mb-5.align-items-center
         .col-md-12.col-lg-6.mb-4.mb-lg-0{"data-aos" => "fade-up"}
-          %h2 Hey, I'm Johan Stanworth
-          %p.mb-0 Freelance Creative & Professional Graphics Designer
+          %h2 Director index
+          %p.mb-0 Look up the movies  those fantastic directors worked on!
         .col-md-12.col-lg-6.text-left.text-lg-right{"data-aos" => "fade-up", "data-aos-delay" => "100"}
-          #filters.filters
-            %a.active{"data-filter" => "*", :href => "#"} All
-            %a{"data-filter" => ".web", :href => "#"} Web
-            %a{"data-filter" => ".design", :href => "#"} Design
-            %a{"data-filter" => ".branding", :href => "#"} Branding
-            %a{"data-filter" => ".photography", :href => "#"} Photography
+          .filters
+            -# %a.active{"data-filter" => "*", :href => "#"} All
+            -# %a{"data-filter" => ".web", :href => "#"} Web
+            -# %a{"data-filter" => ".design", :href => "#"} Design
+            -# %a{"data-filter" => ".branding", :href => "#"} Branding
+            -# %a{"data-filter" => ".photography", :href => "#"} Photography
+            =link_to "Movie", works_path
       #portfolio-grid.row.no-gutter{"data-aos" => "fade-up", "data-aos-delay" => "200"}
-        .item.web.col-sm-6.col-md-4.col-lg-4.mb-4
-          %a.item-wrap.fancybox{:href => "work-single.html"}
-            .work-info
-              %h3 Boxed Water
-              %span Web
-            %img.img-fluid{:src => "assets/img/img_1.jpg"}/
-        .item.photography.col-sm-6.col-md-4.col-lg-4.mb-4
-          %a.item-wrap.fancybox{:href => "work-single.html"}
-            .work-info
-              %h3 Build Indoo
-              %span Photography
-            %img.img-fluid{:src => "assets/img/img_2.jpg"}/
-        .item.branding.col-sm-6.col-md-4.col-lg-4.mb-4
-          %a.item-wrap.fancybox{:href => "work-single.html"}
-            .work-info
-              %h3 Cocooil
-              %span Branding
-            %img.img-fluid{:src => "assets/img/img_3.jpg"}/
-        .item.design.col-sm-6.col-md-4.col-lg-4.mb-4
-          %a.item-wrap.fancybox{:href => "work-single.html"}
-            .work-info
-              %h3 Nike Shoe
-              %span Design
-            %img.img-fluid{:src => "assets/img/img_4.jpg"}/
-        .item.photography.col-sm-6.col-md-4.col-lg-4.mb-4
-          %a.item-wrap.fancybox{:href => "work-single.html"}
-            .work-info
-              %h3 Kitchen Sink
-              %span Photography
-            %img.img-fluid{:src => "assets/img/img_5.jpg"}/
-        .item.branding.col-sm-6.col-md-4.col-lg-4.mb-4
-          %a.item-wrap.fancybox{:href => "work-single.html"}
-            .work-info
-              %h3 Amazon
-              %span brandingn
-            %img.img-fluid{:src => "assets/img/img_6.jpg"}/
+        -@directors.each do |director|
+          .item.web.col-sm-6.col-md-4.col-lg-4.mb-4
+            -# %a.item-wrap.fancybox{:href => "work-single.html"}
+            =link_to director_path(director), class: 'item-wrap fancybox' do
+              .work-info
+                %h3=director.name
+                %span=director.from
+              %img.img-fluid{:src => "assets/img/img_1.jpg"}/
+              -# =image_tag director.image.to_s, class: 'img-fluid'
