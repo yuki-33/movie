@@ -42,7 +42,7 @@
         .row.align-items-stretch
           .col-md-8{"data-aos" => "fade-up"}
             -# %img.img-fluid{:alt => "Image", :src => "/img/img_1_big.jpg"}/
-            =image_tag @work.image.to_s, class: 'img-fluid'
+            =image_tag @work.image_url, class: 'img-fluid'
           .col-md-3.ml-auto{"data-aos" => "fade-up", "data-aos-delay" => "100"}
             .sticky-content
               %h3.h3=@work.title
@@ -72,7 +72,7 @@
                   %h3=work.title
                   %span=work.release.year
                 -# %img.img-fluid{:src => "/img/img_1.jpg"}/
-                =image_tag work.image.to_s, class: 'img-fluid'
+                =image_tag work.image_url(:thumb), class: 'img-fluid'
           -# .item.photography.col-sm-6.col-md-4.col-lg-4.mb-4
           -#   %a.item-wrap.fancybox{:href => "work-single.html"}
           -#     .work-info
