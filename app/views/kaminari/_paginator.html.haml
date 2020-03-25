@@ -12,7 +12,7 @@
   -#     = last_page_tag unless current_page.last?
 
   .pagination.p1
-    %ul    
+    %ul
       -# = first_page_tag unless current_page.first?
       = prev_page_tag unless current_page.first?
       - each_page do |page|
@@ -23,22 +23,22 @@
       = next_page_tag unless current_page.last?
       -# = last_page_tag unless current_page.last?
 
-
-.pagination.p1
-  %ul
-    %a{:href => "#"}
-      %li
-    %a.is-active{:href => "#"}
-      %li 1
-    %a{:href => "#"}
-      %li 2
-    %a{:href => "#"}
-      %li 3
-    %a{:href => "#"}
-      %li 4
-    %a{:href => "#"}
-      %li 5
-    %a{:href => "#"}
-      %li 6
-    %a{:href => "#"}
-      %li >
+-#
+-# .pagination.p1
+-#   %ul
+-#     %a{:href => "#"}
+-#       %li
+-#     %a.is-active{:href => "#"}
+-#       %li 1
+-#     %a{:href => "#"}
+-#       %li 2
+-#     %a{:href => "#"}
+-#       %li 3
+-#     %a{:href => "#"}
+-#       %li 4
+-#     %a{:href => "#"}
+-#       %li 5
+-#     %a{:href => "#"}
+-#       %li 6
+-#     %a{:href => "#"}
+-#       %li >

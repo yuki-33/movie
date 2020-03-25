@@ -2,7 +2,7 @@ class WorksController < ApplicationController
   before_action :set_work, only: [:edit, :show, :update, :destroy]
 
   def index
-    @works = Work.includes(:director).by_position.page(params[:page]).per(9)
+    @works = Work.includes(:director).by_position.page(params[:page]).per(2)
   end
 
   def create
