@@ -46,8 +46,12 @@
               .work-info
                 %h3=work.title
                 %span=work.release.try(:year)
+                %br
+                %span=work.director.name
               -# %img.img-fluid{:src => "img/img_1.jpg"}/
               =image_tag work.image_url(:thumb), class: 'img-fluid'
+      =paginate @works
+
       =link_to "Registrarion", new_work_path, class: "btn btn-outline-danger"
   / End  Works Section
   / ======= Clients Section =======
