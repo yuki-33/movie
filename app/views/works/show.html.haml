@@ -47,7 +47,7 @@
             .sticky-content
               %h3.h3=@work.title
               %p.mb-4
-                %span.text-muted=@work.release.year
+                %span.text-muted=@work.release.try(:year)
               .mb-5
                 %p
                   =@work.description
