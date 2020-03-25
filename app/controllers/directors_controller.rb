@@ -44,7 +44,7 @@ class DirectorsController < ApplicationController
   end
 
   def directors_params
-    params[:director].permit(:name, :from)
+    params[:director].permit(:name, :from, :image)
   end
 
 end

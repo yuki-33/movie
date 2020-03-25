@@ -43,5 +43,5 @@
               .work-info
                 %h3=director.name
                 %span=director.from
-              %img.img-fluid{:src => "assets/img/img_1.jpg"}/
-              -# =image_tag director.image.to_s, class: 'img-fluid'
+              -# %img.img-fluid{:src => "assets/img/img_1.jpg"}
+              =image_tag director.image.to_s, class: 'img-fluid'
