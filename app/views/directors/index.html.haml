@@ -44,4 +44,8 @@
                 %h3=director.name
                 %span=director.from
               -# %img.img-fluid{:src => "assets/img/img_1.jpg"}
-              =image_tag director.image_url(:thumb), class: 'img-fluid'
+              -if director.image.present?
+                =image_tag director.image_url(:thumb), class: 'img-fluid'
+              -else
+                %img.img-fluid{:src => "img/default_work.png"}/
+      =link_to "Registrarion", new_director_path, class: "btn btn-outline-danger"

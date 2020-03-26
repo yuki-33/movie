@@ -49,7 +49,10 @@
                 %br
                 %span=work.director.name
               -# %img.img-fluid{:src => "img/img_1.jpg"}/
-              =image_tag work.image_url(:thumb), class: 'img-fluid'
+              -if work.image.present?
+                =image_tag work.image_url(:thumb), class: 'img-fluid'
+              -else
+                %img.img-fluid{:src => "img/default_work.png"}/
       =paginate @works
 
       =link_to "Registrarion", new_work_path, class: "btn btn-outline-danger"

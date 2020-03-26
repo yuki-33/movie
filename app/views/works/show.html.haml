@@ -42,7 +42,11 @@
         .row.align-items-stretch
           .col-md-8{"data-aos" => "fade-up"}
             -# %img.img-fluid{:alt => "Image", :src => "/img/img_1_big.jpg"}/
-            =image_tag @work.image_url, class: 'img-fluid'
+            -if @work.image.present?
+              =image_tag @work.image_url, class: 'img-fluid'
+            -else
+              %img.img-fluid{:src => "img/default_work_large.png"}/
+
           .col-md-3.ml-auto{"data-aos" => "fade-up", "data-aos-delay" => "100"}
             .sticky-content
               %h3.h3=@work.title
