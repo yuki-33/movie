@@ -55,7 +55,8 @@
                 %img.img-fluid{:src => "img/default_work.png"}/
       =paginate @works
 
-      =link_to "Registrarion", new_work_path, class: "btn btn-outline-danger"
+      -if user_signed_in?
+        =link_to "Registration", new_login_work_path, class: "btn btn-outline-danger"
   / End  Works Section
   / ======= Clients Section =======
   -# %section.section

@@ -35,8 +35,9 @@
             director:
             =link_to "#{@work.director.name}", director_path(@work.director)
             %br
-            =link_to "Edit", edit_work_path(@work), class: "btn btn-outline-info"
-            =link_to "Delete", work_path(@work), method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-outline-secondary"
+            -if user_signed_in?
+              =link_to "Edit", edit_login_work_path(@work), class: "btn btn-outline-info"
+              =link_to "Delete", login_work_path(@work), method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-outline-secondary"
     .site-section.pb-0
       .container
         .row.align-items-stretch
@@ -45,7 +46,7 @@
             -if @work.image.present?
               =image_tag @work.image_url, class: 'img-fluid'
             -else
-              %img.img-fluid{:src => "img/default_work_large.png"}/
+              %img.img-fluid{:src => "/img/default_work_large.png"}/
 
           .col-md-3.ml-auto{"data-aos" => "fade-up", "data-aos-delay" => "100"}
             .sticky-content

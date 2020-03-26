@@ -48,4 +48,5 @@
                 =image_tag director.image_url(:thumb), class: 'img-fluid'
               -else
                 %img.img-fluid{:src => "img/default_work.png"}/
-      =link_to "Registrarion", new_director_path, class: "btn btn-outline-danger"
+      -if user_signed_in?
+        =link_to "Registrarion", new_director_path, class: "btn btn-outline-danger"

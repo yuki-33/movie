@@ -10,7 +10,15 @@
     -# = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
   %body
     =render 'header'
+    -if notice.present?
+      .container
+        %p.notice.alert.alert-primary{:role => "alert"}
+          =notice
+    -if alert.present?
+      .container
+        %p.alert.alert-danger{:role => "alert"}
+          =alert
     = yield
     =render 'footer'
-    
+
   = javascript_include_tag "application"

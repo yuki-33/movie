@@ -1,4 +1,4 @@
-=bootstrap_form_with model: @work, local: true do |f|
+=bootstrap_form_with model: [:login, @work], local: true do |f|
   =f.text_field :title
   =f.collection_select :director_id, Director.all, :id, :name, include_blank: true, class: 'form-control '
   =f.text_field :release
