@@ -33,7 +33,7 @@ class Login::ProfilesController < Login::ApplicationController
       :last_name,
       :introduction,
       :image,
-      :image_cache
+      :image_cache,
       :remove_image
     )
   end
