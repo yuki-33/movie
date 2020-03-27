@@ -1,0 +1,28 @@
+%main#main
+  .site-section.pb-0.site-portfolio
+    .container
+      .row.mb-5.align-items-end
+        .col-md-12{"data-aos" => "fade-up"}
+          %h2 Profile
+          %p.mb-0
+            Introduce yourself and let's introduce great movies with us!
+      .row
+        .col-md-12.mb-5.mb-md-0{"data-aos" => "fade-up"}
+          =bootstrap_form_with model: [:login, @profile], url: login_profile_path, local: true do |f|
+            .row
+              .col-md-6
+                =f.text_field :first_name
+              .col-md-6
+                =f.text_field :last_name
+              .col-md-12
+                =f.text_area :introduction
+              -# .col-md-12.mb-3
+              -#   =f.file_field :image
+              -#   =f.hidden_field :image_cache
+              -#   -if @profile.image?
+              -#     .js-image-preview.m-t-5
+              -#       =image_tag @profile.image_url(:thumb)
+              -#       .checkbox.checkbox-primary.m-t-5
+              -#         =f.check_box_without_bootstrap :remove_image
+              -#         =f.label :remove_image, 'Image Delete'
+              =f.submit 'Save profile', class: "readmore d-block w-100"

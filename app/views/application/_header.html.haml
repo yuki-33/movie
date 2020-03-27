@@ -11,7 +11,10 @@
           %li
             -# %a{:href => "services.html"} Services
             =link_to "Movie", works_path
+          %li  
           -if user_signed_in?
+            %li
+              = link_to 'My page', edit_login_profile_path
             %li
               = link_to 'Logout', destroy_user_session_path
           -else
