@@ -6,4 +6,5 @@
 //= require isotope-layout/isotope.pkgd.min
 //= require aos/aos
 //= require owl.carousel/owl.carousel.min
+//= require rails-ujs
 //= require main

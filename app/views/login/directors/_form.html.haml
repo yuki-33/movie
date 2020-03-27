@@ -1,0 +1,15 @@
+=bootstrap_form_with model: [:login, @director], local: true do |f|
+  =f.text_field :name
+  =f.text_field :from
+  =f.file_field :image
+  =f.submit class: "btn btn-info"
+  -# =f.hidden_field :image_cache
+  -# -if @director.image?
+  -#   .m-t-5
+  -#     =image_tag @direcotr.image_url(:thumb)
+  -#     .checkbox.checkbox-primary.m-t-5
+  -#       =f.check_box_without_bootstrap :remove_image
+  -#       =f.label :remove_image, 'Image Delete'
+
+%br
+=link_to "Back to the list", directors_path

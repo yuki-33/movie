@@ -32,9 +32,9 @@
             =@director.from
             %br
             -if user_signed_in?
-              =link_to "Add new movie", new_work_path(director_id: @director.id), class: "btn btn-outline-danger"
-              =link_to "Edit", edit_director_path(@director), class: "btn btn-outline-info"
-              =link_to "Delete", director_path(@director), method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-outline-secondary"
+              =link_to "Add new movie", new_login_work_path(director_id: @director.id), class: "btn btn-outline-danger"
+              =link_to "Edit", edit_login_director_path(@director), class: "btn btn-outline-info"
+              =link_to "Delete", login_director_path(@director), method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-outline-secondary"
       .site-section.pb-0
       .container
         .row.align-items-stretch

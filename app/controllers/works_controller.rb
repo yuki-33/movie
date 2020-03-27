@@ -14,11 +14,9 @@ class WorksController < ApplicationController
   end
 
 
-
   private
   def set_work
     @work = Work.find(params[:id])
   end
-
 
 end
