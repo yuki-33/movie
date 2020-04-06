@@ -35,6 +35,10 @@
             director:
             =link_to "#{@work.director.name}", director_path(@work.director)
             %br
+            -@work.tags.each do |tag|
+              =link_to tag.name, tag_path(tag), class: "badge badge-secondary"
+            %br
+            %br
             -if user_signed_in?
               =link_to "Edit", edit_login_work_path(@work), class: "btn btn-outline-info"
               =link_to "Delete", login_work_path(@work), method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-outline-secondary"

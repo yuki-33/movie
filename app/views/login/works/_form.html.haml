@@ -1,6 +1,7 @@
 =bootstrap_form_with model: [:login, @work], local: true do |f|
   =f.text_field :title
   =f.collection_select :director_id, Director.all, :id, :name, include_blank: true, class: 'form-control '
+  =f.collection_check_boxes :tag_ids, Tag.all, :id, :name, class: 'form-contral'
   =f.text_field :release
   =f.text_field :starring
   =f.text_field :description

@@ -63,5 +63,5 @@
               -# %h4.h4.mb-3 Director
               %ul.list-unstyled.list-line.mb-5
                 -@director.works.by_release.each do |work|
-                  =link_to "#{work.title}(#{work.release.year})", work_path(work)
+                  =link_to "#{work.title}(#{work.release.try(:year)})", work_path(work)
                   %br
