@@ -7,7 +7,6 @@
 -# = @work.starring
 -# %br
 -# = @work.description
--#
 -# %hr
 -# = "#{@work.director.name} works"
 -# %br
@@ -15,13 +14,11 @@
 -# %br
 -# -@work.related_works.each do |work|
 -#   = link_to "#{work.title}(#{work.release.year})", work_path(work)
--#
 -# %br
 -# %hr
 -# =link_to "Edit", edit_work_path(@work)
 -# %br
 -# =link_to "Back to the list", works_path
--#
 
 %main#main
   %section.section
@@ -48,7 +45,8 @@
           .col-md-8{"data-aos" => "fade-up"}
             -# %img.img-fluid{:alt => "Image", :src => "/img/img_1_big.jpg"}/
             -if @work.image.present?
-              =image_tag @work.image_url, class: 'img-fluid'
+              -# =image_tag @work.image.variant(resize:'730x730').processed
+              =image_tag @work.image.variant(resize:"730x730^").processed
             -else
               %img.img-fluid{:src => "/img/default_work_large.png"}/
 
@@ -79,63 +77,8 @@
                 =link_to work_path(work), class: 'item-wrap fancybox' do
                   .work-info
                     %h3=work.title
-                    %span=work.release.year
-                  -# %img.img-fluid{:src => "/img/img_1.jpg"}/
-                  =image_tag work.image_url(:thumb), class: 'img-fluid'
-          -# .item.photography.col-sm-6.col-md-4.col-lg-4.mb-4
-          -#   %a.item-wrap.fancybox{:href => "work-single.html"}
-          -#     .work-info
-          -#       %h3 Build Indoo
-          -#       %span Photography
-          -#     %img.img-fluid{:src => "img/img_2.jpg"}/
-          -# .item.branding.col-sm-6.col-md-4.col-lg-4.mb-4
-          -#   %a.item-wrap.fancybox{:href => "work-single.html"}
-          -#     .work-info
-          -#       %h3 Cocooil
-          -#       %span Branding
-          -#     %img.img-fluid{:src => "img/img_3.jpg"}/
-          -# .item.design.col-sm-6.col-md-4.col-lg-4.mb-4
-          -#   %a.item-wrap.fancybox{:href => "work-single.html"}
-          -#     .work-info
-          -#       %h3 Nike Shoe
-          -#       %span Design
-          -#     %img.img-fluid{:src => "img/img_4.jpg"}/
-          -# .item.photography.col-sm-6.col-md-4.col-lg-4.mb-4
-          -#   %a.item-wrap.fancybox{:href => "work-single.html"}
-          -#     .work-info
-          -#       %h3 Kitchen Sink
-          -#       %span Photography
-          -#     %img.img-fluid{:src => "img/img_5.jpg"}/
-          -# .item.branding.col-sm-6.col-md-4.col-lg-4.mb-4
-          -#   %a.item-wrap.fancybox{:href => "work-single.html"}
-          -#     .work-info
-          -#       %h3 Amazon
-          -#       %span brandingn
-          -#     %img.img-fluid{:src => "img/img_6.jpg"}/
-
-
-      -#           -# %li Logo
-      -#         %p
-      -#           %a.readmore{:href => "#"} Visit Website
-      -# / ======= Testimonials Section =======
-      -# %section.section.pt-0
-      -#   .container
-      -#     .owl-carousel.testimonial-carousel
-      -#       .testimonial-wrap
-      -#         .testimonial
-      -#           %img.img-fluid{:alt => "Image", :src => "/img/person_1.jpg"}/
-      -#           %blockquote
-      -#             %p
-      -#               Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam necessitatibus incidunt ut officiis
-      -#               explicabo inventore.
-      -#           %p — Jean Hicks
-      -#       .testimonial-wrap
-      -#         .testimonial
-      -#           %img.img-fluid{:alt => "Image", :src => "/img/person_2.jpg"}/
-      -#           %blockquote
-      -#             %p
-      -#               Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam necessitatibus incidunt ut officiis
-      -#               explicabo inventore.
-      -#           %p — Chris Stanworth
-      -# / End Testimonials Section
-      -# / End #main
+                    %span=work.release.try(:year)
+                  -if work.image.present?
+                    =image_tag work.image.variant(gravity: :center, resize:"350x350^", crop:"350x350+0+0").processed, class: 'img-fluid'
+                  -else
+                    %img.img-fluid{:src => "/img/default_work_large.png"}/

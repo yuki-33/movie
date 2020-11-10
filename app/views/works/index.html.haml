@@ -18,13 +18,9 @@
 -#         %hr
 -#         =link_to "Edit", edit_work_path(work)
 -#         =link_to "Delete", work_path(work), method: :delete, data: {confirm: "Are you sure?"}
--#
 -# =link_to "Registrarion", new_work_path
--#
-
 
 %main#main
-  / ======= Works Section =======
   %section.section.site-portfolio
     .container
       .row.mb-5.align-items-center
@@ -33,15 +29,10 @@
           %p.mb-0 Every week we get new exciting movies
         .col-md-12.col-lg-6.text-left.text-lg-right{"data-aos" => "fade-up", "data-aos-delay" => "100"}
           .filters
-            -# %a.active{"data-filter" => "*", :href => "#"} All
-            -# %a{"data-filter" => ".web", :href => "#"} Web
-            -# %a{"data-filter" => ".design", :href => "#"} Design
-            -# %a{"data-filter" => ".branding", :href => "#"} Branding
             =link_to "Director", directors_path
       #portfolio-grid.row.no-gutter{"data-aos" => "fade-up", "data-aos-delay" => "200"}
         -@works.each do |work|
           .item.web.col-sm-6.col-md-4.col-lg-4.mb-4
-            -# %a.item-wrap.fancybox{:href => "work-single.html"}
             =link_to work_path(work), class: 'item-wrap fancybox' do
               .work-info
                 %h3=work.title
@@ -50,110 +41,18 @@
                 %span=work.director.name
               -# %img.img-fluid{:src => "img/img_1.jpg"}/
               -if work.image.present?
-                =image_tag work.image_url(:thumb), class: 'img-fluid'
+                =image_tag work.image.variant(gravity: :center, resize:"350x350^", crop:"350x350+0+0").processed
               -else
-                %img.img-fluid{:src => "img/default_work.png"}/
+                %img.img-fluid{:src => "/img/default_work.png"}/
       =paginate @works
-
+      -# = search_form_for @q do |f|
+      -#   = f.label :title, "Keyword"
+      -#   = f.search_field :title_or_director_name_cont
+      -#   = f.submit "Search"
+      .index-tags
+        %ul.cp_tag01
+          -@tags.each do |tag|
+            =link_to tag.name, tag_path(tag)
       -if user_signed_in?
         =link_to "Registration", new_login_work_path, class: "btn btn-outline-danger"
   / End  Works Section
-  / ======= Clients Section =======
-  -# %section.section
-  -#   .container
-  -#     .row.justify-content-center.text-center.mb-4
-  -#       .col-5
-  -#         %h3.h3.heading My Clients
-  -#         %p Lorem ipsum dolor sit amet consectetur adipisicing elit explicabo inventore.
-  -#     .row
-  -#       .col-4.col-sm-4.col-md-2
-  -#         %a.client-logo{:href => "#"}
-  -#           %img.img-fluid{:alt => "Image", :src => "img/logo-adobe.png"}/
-  -#       .col-4.col-sm-4.col-md-2
-  -#         %a.client-logo{:href => "#"}
-  -#           %img.img-fluid{:alt => "Image", :src => "img/logo-uber.png"}/
-  -#       .col-4.col-sm-4.col-md-2
-  -#         %a.client-logo{:href => "#"}
-  -#           %img.img-fluid{:alt => "Image", :src => "img/logo-apple.png"}/
-  -#       .col-4.col-sm-4.col-md-2
-  -#         %a.client-logo{:href => "#"}
-  -#           %img.img-fluid{:alt => "Image", :src => "img/logo-netflix.png"}/
-  -#       .col-4.col-sm-4.col-md-2
-  -#         %a.client-logo{:href => "#"}
-  -#           %img.img-fluid{:alt => "Image", :src => "img/logo-nike.png"}/
-  -#       .col-4.col-sm-4.col-md-2
-  -#         %a.client-logo{:href => "#"}
-  -#           %img.img-fluid{:alt => "Image", :src => "img/logo-google.png"}/
-  -# / End Clients Section
-  -# / ======= Services Section =======
-  -# %section.section
-  -#   .container
-  -#     .row.justify-content-center.text-center.mb-4
-  -#       .col-5
-  -#         %h3.h3.heading My Services
-  -#         %p Lorem ipsum dolor sit amet consectetur adipisicing elit explicabo inventore.
-  -#     .row
-  -#       .col-12.col-sm-6.col-md-6.col-lg-3
-  -#         %span.la.la-cube.la-3x.mb-4
-  -#         %h4.h4.mb-2 Web Design
-  -#         %p Lorem ipsum dolor sit amet consectetur adipisicing elit explicabo inventore.
-  -#         %ul.list-unstyled.list-line
-  -#           %li Lorem ipsum dolor sit amet consectetur adipisicing
-  -#           %li Non pariatur nisi
-  -#           %li Magnam soluta quod
-  -#           %li Lorem ipsum dolor
-  -#           %li Cumque quae aliquam
-  -#       .col-12.col-sm-6.col-md-6.col-lg-3
-  -#         %span.la.la-mobile.la-3x.mb-4
-  -#         %h4.h4.mb-2 Mobile Applications
-  -#         %p Lorem ipsum dolor sit amet consectetur adipisicing elit explicabo inventore.
-  -#         %ul.list-unstyled.list-line
-  -#           %li Lorem ipsum dolor sit amet consectetur adipisicing
-  -#           %li Non pariatur nisi
-  -#           %li Magnam soluta quod
-  -#           %li Lorem ipsum dolor
-  -#           %li Cumque quae aliquam
-  -#       .col-12.col-sm-6.col-md-6.col-lg-3
-  -#         %span.la.la-image.la-3x.mb-4
-  -#         %h4.h4.mb-2 Graphic Design
-  -#         %p Lorem ipsum dolor sit amet consectetur adipisicing elit explicabo inventore.
-  -#         %ul.list-unstyled.list-line
-  -#           %li Lorem ipsum dolor sit amet consectetur adipisicing
-  -#           %li Non pariatur nisi
-  -#           %li Magnam soluta quod
-  -#           %li Lorem ipsum dolor
-  -#           %li Cumque quae aliquam
-  -#       .col-12.col-sm-6.col-md-6.col-lg-3
-  -#         %span.la.la-search.la-3x.mb-4
-  -#         %h4.h4.mb-2 SEO
-  -#         %p Lorem ipsum dolor sit amet consectetur adipisicing elit explicabo inventore.
-  -#         %ul.list-unstyled.list-line
-  -#           %li Lorem ipsum dolor sit amet consectetur adipisicing
-  -#           %li Non pariatur nisi
-  -#           %li Magnam soluta quod
-  -#           %li Lorem ipsum dolor
-  -#           %li Cumque quae aliquam
-  -# / End Services Section
-  -# / ======= Testimonials Section =======
-  -# %section.section.pt-0
-  -#   .container
-  -#     .owl-carousel.testimonial-carousel
-  -#       .testimonial-wrap
-  -#         .testimonial
-  -#           %img.img-fluid{:alt => "Image", :src => "img/person_1.jpg"}/
-  -#           %blockquote
-  -#             %p
-  -#               Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam necessitatibus incidunt ut officiis
-  -#               explicabo inventore.
-  -#           %p — Jean Hicks
-  -#       .testimonial-wrap
-  -#         .testimonial
-  -#           %img.img-fluid{:alt => "Image", :src => "img/person_2.jpg"}/
-  -#           %blockquote
-  -#             %p
-  -#               Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam necessitatibus incidunt ut officiis
-  -#               explicabo inventore.
-  -#           %p — Chris Stanworth
-  / End Testimonials Section
-/ End #main
-/ ======= Footer =======

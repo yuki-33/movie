@@ -48,10 +48,16 @@
         .row.align-items-stretch
           .col-md-8{"data-aos" => "fade-up"}
             -# %img.img-fluid{:alt => "Image", :src => "/img/img_1_big.jpg"}/
-            -if @director.image.present?
-              =image_tag @director.image_url, class: 'img-fluid'
+            -if @director.photo.present?
+              =image_tag @director.photo.variant(resize:'730x730^').processed, class: 'img-fluid'
             -else
-              %img.img-fluid{:src => "img/default_work_large.png"}/
+              %img.img-fluid{:src => "/img/default_work_large.png"}/
+            -# -if @director.images.present?
+            -#   -@director.images.each do |image|
+            -#     .col-md-4{"data-aos" => "fade-up"}
+            -#       = image_tag image.variant(gravity: :center, resize:"350x350^", crop:"350x350+0+0").processed
+            -# -else
+            -#   %img.img-fluid{:src => "/img/default_work_large.png"}/
           .col-md-3.ml-auto{"data-aos" => "fade-up", "data-aos-delay" => "100"}
             .sticky-content
               %h3.h3 Works

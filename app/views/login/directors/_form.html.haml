@@ -1,15 +1,15 @@
 =bootstrap_form_with model: [:login, @director], local: true do |f|
   =f.text_field :name
   =f.text_field :from
-  =f.file_field :image
+  =f.file_field :photo
+  =f.file_field :images, multiple: true
+  =f.hidden_field :photo_blob_id, value: @director.photo.blob_id if @director.photo.attached?
+  -if @director.photo.present?
+    .m-t-5
+      =image_tag @director.photo.variant(gravity: :center, resize: "350x350^", crop:"350x350+0+0")
+      .checkbox.checkbox-primary.m-t-5
+        =f.check_box_without_bootstrap :remove_photo_id,{}, @director.id, false
+        =f.label :remove_photo_id, 'Photo Delete'
   =f.submit class: "btn btn-info"
-  -# =f.hidden_field :image_cache
-  -# -if @director.image?
-  -#   .m-t-5
-  -#     =image_tag @direcotr.image_url(:thumb)
-  -#     .checkbox.checkbox-primary.m-t-5
-  -#       =f.check_box_without_bootstrap :remove_image
-  -#       =f.label :remove_image, 'Image Delete'
-
 %br
 =link_to "Back to the list", directors_path

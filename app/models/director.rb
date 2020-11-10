@@ -1,5 +1,9 @@
 class Director < ApplicationRecord
-  mount_uploader :image, DirectorImageUploader
+  has_one_attached :photo
+  has_many_attached :images
+
+  attr_accessor :photo_blob_id
+
   has_many :works
   validates :name, presence: true
   scope :by_id, ->{ order(id: :asc) }

@@ -1,10 +1,11 @@
 class Work < ApplicationRecord
-  mount_uploader :image, WorkImageUploader
+  has_one_attached :image
+
+  attr_accessor :image_blob_id
+
   belongs_to :director
   has_many :work_tags, dependent: :destroy
   has_many :tags, through: :work_tags
-
-  acts_as_list
 
   validates :title, presence: true
   scope :by_position, ->{ order(position: :asc)}

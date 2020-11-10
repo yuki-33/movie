@@ -1,5 +1,5 @@
 class Profile < ApplicationRecord
-  mount_uploader :image, WorkImageUploader
+  # mount_uploader :image, WorkImageUploader
   belongs_to :user
 
   def full_name
