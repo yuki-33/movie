@@ -8,7 +8,9 @@ class Login::WorksController < Login::ApplicationController
 
   def create
     @work = Work.new(works_params)
-    @work.image.attach(ActiveStorage::Blob.find(@work.image_blob_id)) if !@work.image.attached? && @work.image_blob_id
+    if !@work.image.attached? && @work.image_blob_id
+        @work.image.attach(ActiveStorage::Blob.find(@work.image_blob_id))
+    end
     if @work.save
       redirect_to works_path
     else
@@ -20,7 +22,9 @@ class Login::WorksController < Login::ApplicationController
   end
 
   def update
-    @work.image.attach(ActiveStorage::Blob.find(@work.image_blob_id)) if !@work.image.attached? && @work.image_blob_id
+    if !@work.image.attached? && @work.image_blob_id
+        @work.image.attach(ActiveStorage::Blob.find(@work.image_blob_id))
+    end
     @work.image.purge if params[:work][:remove_image_id]
     if @work.update(works_params)
       redirect_to work_path(@work)

@@ -7,7 +7,12 @@ class Login::DirectorsController < Login::ApplicationController
 
   def create
     @director = Director.new(directors_params)
-    @director.photo.attach(ActiveStorage::Blob.find(@director.photo_blob_id)) if !@director.photo.attached? && @director.photo_blob_id
+    if !@director.photo.attached? && @director.photo_blob_id
+        @director.photo.attach(ActiveStorage::Blob.find(@director.photo_blob_id))
+    end
+    if !@director.images.attached? && @director.images_blob_id
+        @director.images.attach(ActiveStorage::Blob.find(@director.images_blob_id))
+    end
     if @director.save
       redirect_to directors_path
     else
@@ -19,8 +24,20 @@ class Login::DirectorsController < Login::ApplicationController
   end
 
   def update
-    @director.photo.attach(ActiveStorage::Blob.find(@director.photo_blob_id)) if !@director.photo.attached? && @director.photo_blob_id
     @director.photo.purge if params[:director][:remove_photo_id]
+    if params[:director][:remove_image_ids]
+      params[:director][:remove_image_ids].each do |image_id|
+        image = @director.images.find(image_id)
+        image.purge
+      end
+    end
+    # @director.images.purge if params[:director][:remove_images_id]
+    if !@director.photo.attached? && @director.photo_blob_id
+        @director.photo.attach(ActiveStorage::Blob.find(@director.photo_blob_id))
+    end
+    if !@director.images.attached? && @director.images_blob_id
+        @director.images.attach(ActiveStorage::Blob.find(@director.images_blob_id))
+    end
     if @director.update(directors_params)
       redirect_to director_path(@director)
     else
@@ -40,7 +57,12 @@ class Login::DirectorsController < Login::ApplicationController
   end
 
   def directors_params
-    params[:director].permit(:name, :from, :photo, images: [])
+    params[:director].permit(
+      :name,
+      :from,
+      :photo,
+      images: []
+    )
   end
 
 end

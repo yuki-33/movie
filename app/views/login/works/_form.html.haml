@@ -5,8 +5,8 @@
   =f.text_field :release
   =f.text_field :starring
   =f.text_field :description
-  =f.file_field :image
-  =f.hidden_field :image_blob_id, value: @work.image.blob_id if @work.image.attached?
+  =f.file_field :image, direct_upload: true
+  -# =f.hidden_field :image_blob_id, value: @work.image.blob_id if @work.image.attached?
   -if @work.image.present?
     .m-t-5
       =image_tag @work.image.variant(gravity: :center, resize: "350x350^", crop:"350x350+0+0").processed

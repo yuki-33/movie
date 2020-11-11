@@ -2,10 +2,8 @@
 -# %br
 -# = @director.from
 -# %br
--#
 -# %br
 -# %hr
--#
 -# -@director.works.each do |work|
 -#   = link_to "#{work.title}(#{work.release.year})", work_path(work)
 -#
@@ -13,12 +11,12 @@
 -#
 -#
 -# %hr
--# =link_to "Add new movie", new_work_path(director_id: @director.id)
+-# =link_to "Add new movie", new_login_work_path(director_id: @director.id)
 -# %br
--# =link_to "Edit", edit_director_path(@director)
+-# =link_to "Edit", edit_login_director_path(@director)
 -# %br
 -# =link_to "Back to the list", directors_path
--#
+
 
 
 
@@ -37,13 +35,9 @@
               =link_to "Delete", login_director_path(@director), method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-outline-secondary"
         .col-md-12.col-lg-6.text-left.text-lg-right{"data-aos" => "fade-up", "data-aos-delay" => "100"}
           .filters
-            -# %a.active{"data-filter" => "*", :href => "#"} All
-            -# %a{"data-filter" => ".web", :href => "#"} Web
-            -# %a{"data-filter" => ".design", :href => "#"} Design
-            -# %a{"data-filter" => ".branding", :href => "#"} Branding
             =link_to "Director", directors_path
 
-      .site-section.pb-0
+    .site-section.pb-0
       .container
         .row.align-items-stretch
           .col-md-8{"data-aos" => "fade-up"}
@@ -71,3 +65,40 @@
                 -@director.works.by_release.each do |work|
                   =link_to "#{work.title}(#{work.release.try(:year)})", work_path(work)
                   %br
+    -if @director.images.present?
+      .site-section.pb-0
+        .container
+          .row.justify-content-center.text-center.mb-4
+            .col-5
+              %h3.h3.heading You might like them
+              %p They are recommended...
+          .row{"data-aos" => "fade-up", "data-aos-delay" => "200"}
+            -@director.images.each do |image|
+              .item.web.col-sm-6.col-md-4.col-lg-4.mb-4
+                -# %a.item-wrap.fancybox{:href => "work-single.html"}
+                -# =link_to work_path(work), class: 'item-wrap fancybox' do
+                -#   .work-info
+                -#     %h3=work.title
+                -#     %span=work.release.try(:year)
+                =image_tag image.variant(gravity: :center, resize:"350x350^", crop:"350x350+0+0").processed, class: 'img-fluid'
+
+    -if @director.works.present?
+      .site-section.pb-0
+        .container
+          .row.justify-content-center.text-center.mb-4
+            .col-5
+              %h3.h3.heading Works
+              %p There are also recommended...
+          .row{"data-aos" => "fade-up", "data-aos-delay" => "200"}
+
+            -@director.works.by_release.each do |work|
+              .item.web.col-sm-6.col-md-4.col-lg-4.mb-4
+                -# %a.item-wrap.fancybox{:href => "work-single.html"}
+                =link_to work_path(work), class: 'item-wrap fancybox' do
+                  .work-info
+                    %h3=work.title
+                    %span=work.release.try(:year)
+                  -if work.image.present?
+                    =image_tag work.image.variant(gravity: :center, resize:"350x350^", crop:"350x350+0+0").processed, class: 'img-fluid'
+                  -else
+                    %img.img-fluid{:src => "/img/default_work_large.png"}/

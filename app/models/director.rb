@@ -3,6 +3,7 @@ class Director < ApplicationRecord
   has_many_attached :images
 
   attr_accessor :photo_blob_id
+  attr_accessor :images_blob_id
 
   has_many :works
   validates :name, presence: true

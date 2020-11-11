@@ -7,4 +7,6 @@
 //= require aos/aos
 //= require owl.carousel/owl.carousel.min
 //= require rails-ujs
+//= require activestorage
+//= require common
 //= require main
