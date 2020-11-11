@@ -26,7 +26,6 @@
       #portfolio-grid.row.no-gutter{"data-aos" => "fade-up", "data-aos-delay" => "200"}
         -@directors.each do |director|
           .item.web.col-sm-6.col-md-4.col-lg-4.mb-4
-            -# %a.item-wrap.fancybox{:href => "work-single.html"}
             =link_to director_path(director), class: 'item-wrap fancybox' do
               .work-info
                 %h3=director.name

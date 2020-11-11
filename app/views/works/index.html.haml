@@ -1,24 +1,24 @@
-.container
-  .row.list-group
-    -@works.each do |work|
-      .list-group-item
-        =link_to "#{work.title} / #{work.director.name}(#{work.release.year})", work_path(work)
-        %hr
-        = " title :"
-        = link_to "#{work.title}", work_path(work)
-        = " /#{work.director.name} (#{work.release.year})"
-        %br
-        = " starring :"
-        = work.starring
-        %br
-        = " description :"
-        = work.description
-        =link_to higher_work_path(work), class: work.first? ? ' disabled' : ''do
-          %i.fa.fa-arrow-up{"aria-hidden" => "true"}
-        %hr
-        =link_to "Edit", edit_work_path(work)
-        =link_to "Delete", work_path(work), method: :delete, data: {confirm: "Are you sure?"}
-=link_to "Registrarion", new_work_path
+-# .container
+-#   .row.list-group
+-#     -@works.each do |work|
+-#       .list-group-item
+-#         =link_to "#{work.title} / #{work.director.name}(#{work.release.year})", work_path(work)
+-#         %hr
+-#         = " title :"
+-#         = link_to "#{work.title}", work_path(work)
+-#         = " /#{work.director.name} (#{work.release.year})"
+-#         %br
+-#         = " starring :"
+-#         = work.starring
+-#         %br
+-#         = " description :"
+-#         = work.description
+-#         =link_to higher_work_path(work), class: work.first? ? ' disabled' : ''do
+-#           %i.fa.fa-arrow-up{"aria-hidden" => "true"}
+-#         %hr
+-#         =link_to "Edit", edit_work_path(work)
+-#         =link_to "Delete", work_path(work), method: :delete, data: {confirm: "Are you sure?"}
+-# =link_to "Registrarion", new_work_path
 
 %main#main
   %section.section.site-portfolio
@@ -39,7 +39,6 @@
                 %span=work.release.try(:year)
                 %br
                 %span=work.director.name
-              -# %img.img-fluid{:src => "img/img_1.jpg"}/
               -if work.image.present?
                 =image_tag work.image.variant(gravity: :center, resize:"350x350^", crop:"350x350+0+0").processed
               -else
@@ -55,4 +54,3 @@
             =link_to tag.name, tag_path(tag)
       -if user_signed_in?
         =link_to "Registration", new_login_work_path, class: "btn btn-outline-danger"
-  / End  Works Section

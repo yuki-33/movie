@@ -43,25 +43,20 @@
       .container
         .row.align-items-stretch
           .col-md-8{"data-aos" => "fade-up"}
-            -# %img.img-fluid{:alt => "Image", :src => "/img/img_1_big.jpg"}/
             -if @work.image.present?
-              -# =image_tag @work.image.variant(resize:'730x730').processed
               =image_tag @work.image.variant(resize:"730x730^").processed
             -else
               %img.img-fluid{:src => "/img/default_work_large.png"}/
-
           .col-md-3.ml-auto{"data-aos" => "fade-up", "data-aos-delay" => "100"}
             .sticky-content
               %h3.h3=@work.title
               %p.mb-4
                 %span.text-muted=@work.release.try(:year)
               .mb-5
-                %p
-                  =@work.description
+                %p=@work.description
               %h4.h4.mb-3 Director
               %ul.list-unstyled.list-line.mb-5
                 =link_to "#{@work.director.name}", director_path(@work.director)
-
     -if @work.related_works.present?
       .site-section.pb-0
         .container
@@ -70,10 +65,8 @@
               %h3.h3.heading #{@work.director.name} Works
               %p There are also recommended...
           .row{"data-aos" => "fade-up", "data-aos-delay" => "200"}
-
             -@work.related_works.each do |work|
               .item.web.col-sm-6.col-md-4.col-lg-4.mb-4
-                -# %a.item-wrap.fancybox{:href => "work-single.html"}
                 =link_to work_path(work), class: 'item-wrap fancybox' do
                   .work-info
                     %h3=work.title
