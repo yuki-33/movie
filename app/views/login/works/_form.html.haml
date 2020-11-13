@@ -6,13 +6,21 @@
   =f.text_field :starring
   =f.text_field :description
   =f.file_field :image, direct_upload: true
-  -# =f.hidden_field :image_blob_id, value: @work.image.blob_id if @work.image.attached?
+  =f.hidden_field :image_blob_id, value: @work.image.blob_id if @work.image.attached?
   -if @work.image.present?
     .m-t-5
       =image_tag @work.image.variant(gravity: :center, resize: "350x350^", crop:"350x350+0+0").processed
       .checkbox.checkbox-primary.m-t-5
         =f.check_box_without_bootstrap :remove_image_id,{}, @work.id, false
         =f.label :remove_image_id, 'Image Delete'
+  =f.file_field :pictures, multiple: true, direct_upload: true
+  -# =f.hidden_field :images_blob_id, value: @director.images.blob_id if @director.images.attached?
+  -if @work.pictures.present?
+    -@work.pictures.each do |picture|
+      =image_tag picture.variant(gravity: :center, resize: "200x200^", crop:"200x200+0+0").processed
+      .checkbox.checkbox-primary.m-t-5
+        =f.check_box_without_bootstrap :remove_picture_ids, {:multiple => true}, picture.id, false
+        =f.label :remove_picture_ids, 'Picture Delete'
   =f.submit class: "btn btn-info"
 %br
 =link_to "Back to the list", works_path

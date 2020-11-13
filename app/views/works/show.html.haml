@@ -57,6 +57,14 @@
               %h4.h4.mb-3 Director
               %ul.list-unstyled.list-line.mb-5
                 =link_to "#{@work.director.name}", director_path(@work.director)
+
+    -if @work.pictures.present?
+      .site-section.pb-0
+        .container
+          .row{"data-aos" => "fade-up", "data-aos-delay" => "200"}
+            -@work.pictures.each do |picture|
+              .item.web.col-sm-6.col-md-4.col-lg-4.mb-4
+                =image_tag picture.variant(gravity: :center, resize:"350x350^", crop:"350x350+0+0").processed, class: 'img-fluid'
     -if @work.related_works.present?
       .site-section.pb-0
         .container

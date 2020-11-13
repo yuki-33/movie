@@ -25,8 +25,14 @@ class Login::WorksController < Login::ApplicationController
     if !@work.image.attached? && @work.image_blob_id
         @work.image.attach(ActiveStorage::Blob.find(@work.image_blob_id))
     end
-    @work.image.purge if params[:work][:remove_image_id]
     if @work.update(works_params)
+      @work.image.purge if params[:work][:remove_image_id]
+      if params[:work][:remove_picture_ids]
+        params[:work][:remove_picture_ids].each do |picture_id|
+          picture = @work.pictures.find(picture_id)
+          picture.purge
+        end
+      end
       redirect_to work_path(@work)
     else
       render "edit"
@@ -53,7 +59,8 @@ class Login::WorksController < Login::ApplicationController
       :starring,
       :description,
       :image,
-      tag_ids: []
+      tag_ids: [],
+      pictures: []
     )
   end
 

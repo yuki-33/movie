@@ -13,12 +13,11 @@
 -# =link_to "Registrarion", new_director_path
 
 %main#main
-  / ======= Works Section =======
   %section.section.site-portfolio
     .container
       .row.mb-5.align-items-center
         .col-md-12.col-lg-6.mb-4.mb-lg-0{"data-aos" => "fade-up"}
-          %h2 Director index
+          %h2 Directors
           %p.mb-0 Look up the movies  those fantastic directors worked on!
         .col-md-12.col-lg-6.text-left.text-lg-right{"data-aos" => "fade-up", "data-aos-delay" => "100"}
           .filters
@@ -39,7 +38,6 @@
       %form.form-inline
         %input.form-control.form-control-sm.mr-3.w-75{"aria-label" => "Search", :placeholder => "Search", :type => "text"}/
         %i.fa.fa-search{"aria-hidden" => "true"}
-      .form-inline
-        = search_form_for @q do |f|
-          = f.search_field :name_cont, class: 'form-control form-control-sm mr-3 w-75'
-          = f.submit "Search"
+      = search_form_for @q do |f|
+        = f.search_field :name_cont, class: 'form-control form-control-sm mr-3 w-75'
+        = f.submit "Search"

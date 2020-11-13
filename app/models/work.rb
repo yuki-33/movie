@@ -1,7 +1,9 @@
 class Work < ApplicationRecord
   has_one_attached :image
+  has_many_attached :pictures
 
   attr_accessor :image_blob_id
+  attr_accessor :pictures_blob_id
 
   belongs_to :director
   has_many :work_tags, dependent: :destroy

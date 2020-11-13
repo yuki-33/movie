@@ -9,9 +9,10 @@
 
 //======== tags =========//
 .index-tags ul {
+  margin-top: 20px;
   padding: 0;
-  padding-inline-start: 0px;
-  display: inline-block;
+  // padding-inline-start: 0px;
+  // display: inline-block;
 }
 .cp_tag01 {
 	// list-style: none;
@@ -68,8 +69,8 @@
 }
 .cp_tag01 a:hover {
 	color: #ffffff;
-	background-color: #e1444d;
+	background-color: #1EDAEA;
 }
 .cp_tag01 a:hover::after {
-	border-left-color: #e1444d;
+	border-left-color: #1EDAEA;
 }

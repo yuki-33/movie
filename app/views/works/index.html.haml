@@ -44,10 +44,10 @@
               -else
                 %img.img-fluid{:src => "/img/default_work.png"}/
       =paginate @works
-      -# = search_form_for @q do |f|
-      -#   = f.label :title, "Keyword"
-      -#   = f.search_field :title_or_director_name_cont
-      -#   = f.submit "Search"
+      = search_form_for @q do |f|
+        = f.label :title, "Keyword"
+        = f.search_field :title_or_director_name_cont
+        = f.submit "Search"
       .index-tags
         %ul.cp_tag01
           -@tags.each do |tag|
