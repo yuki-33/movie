@@ -22,6 +22,9 @@
                 =link_to "Sign Up", new_user_registration_path
               %li
                 =link_to "Login", new_user_session_path
+            %li
+              =link_to "Contact", new_contacts_path
+
       .col-md-4.d-none.d-md-block.mr-auto
         .tweet.d-flex
           %span.text-white.mt-2.mr-3
@@ -34,7 +37,7 @@
         .col-md-6.d-none.d-md-block
           .testimonial-wrap
             .testimonial
-              =image_tag current_user.profile.image_url(:thumb), class: 'img-fluid'
+              =image_tag current_user.profile.image.variant(gravity: :center, resize: "350x350^", crop:"350x350+0+0").processed, class: 'img-fluid'
               %blockquote
               %h3=current_user.profile.full_name
               %p

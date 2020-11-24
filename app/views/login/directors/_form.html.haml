@@ -5,7 +5,7 @@
   =f.hidden_field :photo_blob_id, value: @director.photo.blob_id if @director.photo.attached?
   -if @director.photo.present?
     .m-t-5
-      =image_tag @director.photo.variant(gravity: :center, resize: "350x350^", crop:"350x350+0+0")
+      =image_tag @director.photo.variant(gravity: :center, resize: "350x350^", crop:"350x350+0+0").processed
       .checkbox.checkbox-primary.m-t-5
         =f.check_box_without_bootstrap :remove_photo_id,{}, @director.id, false
         =f.label :remove_photo_id, 'Photo Delete'
@@ -14,7 +14,7 @@
   -if @director.images.present?
     -@director.images.each do |image|
       .m-t-5
-        =image_tag image.variant(gravity: :center, resize: "200x200^", crop:"200x200+0+0")
+        =image_tag image.variant(gravity: :center, resize: "200x200^", crop:"200x200+0+0").processed
         .checkbox.checkbox-primary.m-t-5
           =f.check_box_without_bootstrap :remove_image_ids, {:multiple => true}, image.id, false
           =f.label :remove_image_ids, 'image Delete'

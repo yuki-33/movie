@@ -17,12 +17,18 @@
               .col-md-12
                 =f.text_area :introduction
               .col-md-12.mb-3
-                =f.file_field :image
-                =f.hidden_field :image_cache
+                =f.file_field :image, direct_upload: true
+                =f.hidden_field :photo_blob_id, value: @profile.image.blob_id if @profile.image.attached?
                 -if @profile.image?
                   .js-image-preview.m-t-5
-                    =image_tag @profile.image_url(:thumb)
+                    =image_tag @profile.image.variant(gravity: :center, resize: "350x350^", crop:"350x350+0+0").processed
                     .checkbox.checkbox-primary.m-t-5
-                      =f.check_box_without_bootstrap :remove_image
-                      =f.label :remove_image, 'Image Delete'
+                      =f.check_box_without_bootstrap :remove_image_id,{}, @profile.id, false
+                      =f.label :remove_image_id, 'Image Delete'
+                -# -if @profile.image?
+                -#   .js-image-preview.m-t-5
+                -#     =image_tag @profile.image
+                -#     .checkbox.checkbox-primary.m-t-5
+                -#       =f.check_box_without_bootstrap :remove_image
+                -#       =f.label :remove_image, 'Image Delete'
                 =f.submit 'Save profile', class: "readmore d-block w-100"

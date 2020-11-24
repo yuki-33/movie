@@ -1,0 +1,19 @@
+%main#main
+  .site-section.pb-0.site-portfolio
+    .container
+      .row.mb-5.align-items-end
+        .col-md-12{"data-aos" => "fade-up"}
+          %h2 Contact
+          %p.mb-0
+            Introduce yourself and let's introduce great movies with us!
+      .row
+        .col-md-12.mb-5.mb-md-0{"data-aos" => "fade-up"}
+          =bootstrap_form_with model: @contact, url: inquiry_contacts_path, local: true do |f|
+            .row
+              .col-md-6
+                =f.text_field :name
+              .col-md-6
+                =f.text_field :email
+              .col-md-12
+                =f.text_area :text
+                =f.submit 'Send Message', class: "readmore d-block w-100"
