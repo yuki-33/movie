@@ -39,7 +39,8 @@ gem "font-awesome-rails"
 gem 'fog'
 gem 'devise'
 gem 'ransack'
-gem 'cloudinary'
+gem 'cloudinary', require: false
+gem 'activestorage-cloudinary-service'
 gem 'kaminari'
 
 group :development, :test do

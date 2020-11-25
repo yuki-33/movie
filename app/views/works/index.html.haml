@@ -40,7 +40,7 @@
                 %br
                 %span=work.director.name
               -if work.image.present?
-                = cl_image_tag{work.image.variant(gravity: :center, resize:"350x350^", crop:"350x350+0+0").processed}
+                =image_tag work.image.variant(gravity: :center, resize:"350x350^", crop:"350x350+0+0").processed
               -else
                 %img.img-fluid{:src => "/img/default_work.png"}/
       =paginate @works
