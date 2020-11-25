@@ -33,11 +33,13 @@
                 =image_tag director.photo.variant(gravity: :center, resize:"350x350^", crop:"350x350+0+0").processed, class: 'img-fluid'
               -else
                 %img.img-fluid{:src => "img/default_work.png"}/
+      =paginate @directors
+
+      -# %form.form-inline
+      -#   %input.form-control.form-control-sm.mr-3.w-75{"aria-label" => "Search", :placeholder => "Search", :type => "text"}/
+      -#   %i.fa.fa-search{"aria-hidden" => "true"}
+      -# = search_form_for @q do |f|
+      -#   = f.search_field :name_cont, class: 'form-control form-control-sm mr-3 w-75'
+      -#   = f.submit "Search"
       -if user_signed_in?
         =link_to "Registrarion", new_login_director_path, class: "btn btn-outline-danger"
-      %form.form-inline
-        %input.form-control.form-control-sm.mr-3.w-75{"aria-label" => "Search", :placeholder => "Search", :type => "text"}/
-        %i.fa.fa-search{"aria-hidden" => "true"}
-      = search_form_for @q do |f|
-        = f.search_field :name_cont, class: 'form-control form-control-sm mr-3 w-75'
-        = f.submit "Search"

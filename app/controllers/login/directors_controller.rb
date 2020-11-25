@@ -10,9 +10,6 @@ class Login::DirectorsController < Login::ApplicationController
     if !@director.photo.attached? && @director.photo_blob_id
         @director.photo.attach(ActiveStorage::Blob.find(@director.photo_blob_id))
     end
-    if !@director.images.attached? && @director.images_blob_id
-        @director.images.attach(ActiveStorage::Blob.find(@director.images_blob_id))
-    end
     if @director.save
       redirect_to directors_path
     else
